@@ -5,11 +5,10 @@ Permite consultar rutas y horarios de recolección, visualizar centros de acopio
 
 ---
 
-## 🚀 Backend (Django)
 
-### 1. Moverse a la carpeta del backend
-```bash
-cd backend
+
+### 1. Estructura del proyecto
+
 ## 📂 Estructura del Proyecto
 
 proyecto-residuos/
