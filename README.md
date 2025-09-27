@@ -1,17 +1,32 @@
+# Proyecto de Gestión de Residuos Sólidos Urbanos ♻️
+
+Este proyecto es una **plataforma web** desarrollada con **Django (backend)** y **React (frontend)** para apoyar la gestión de residuos sólidos urbanos.  
+Permite consultar rutas y horarios de recolección, visualizar centros de acopio y reportar problemas en la comunidad.  
+
+---
+
+## 🚀 Backend (Django)
+
+### 1. Moverse a la carpeta del backend
+```bash
 cd backend
+## 📂 Estructura del Proyecto
 
-# Crear entorno virtual
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
-
-# Instalar dependencias
-pip install -r requirements.txt
-
-# Migrar base de datos
-python manage.py makemigrations
-python manage.py migrate
-
-# Ejecutar servidor
-python manage.py runserver
-
+proyecto-residuos/
+├── backend/ # Código Django (API REST)
+│ ├── residuos/ # Proyecto principal Django
+│ ├── gestion/ # App con modelos, vistas, serializers
+│ ├── manage.py
+│ └── requirements.txt # Dependencias de Python
+│
+├── frontend/ # Código React (interfaz web)
+│ ├── src/ # Componentes y lógica del frontend
+│ ├── public/ # Archivos estáticos
+│ └── package.json # Dependencias de React
+│
+├── docs/ # Documentación, reportes y entregables
+│ ├── Reporte_Sprint1.docx
+│ ├── Backlog_Sprints.docx
+│ └── Portada.docx
+│
+└── README.md # Instrucciones del proyecto
