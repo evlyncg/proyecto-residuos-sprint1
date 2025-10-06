@@ -1,1 +1,33 @@
+# 🖥️ Frontend `frontend/` — React + Vite
 
+Interfaz web del **Sistema de Gestión de Residuos** construida con **React 18** y **Vite**.  
+Consume la API del backend Django REST.
+
+---
+
+## 📂 Estructura de la carpeta
+
+```text
+📁 frontend/
+│
+├── 📁 public/
+│   └── 📄 index.html
+│
+├── 📁 src/
+│   ├── 📁 components/
+│   │   ├── 📄 Navbar.jsx
+│   │   └── 📄 Footer.jsx
+│   ├── 📁 pages/
+│   │   ├── 📄 Home.jsx
+│   │   └── 📄 About.jsx
+│   ├── 📁 services/
+│   │   └── 📄 api.js          # Configuración Axios (baseURL a la API)
+│   ├── 📄 App.jsx
+│   ├── 📄 App.css
+│   ├── 📄 main.jsx
+│   └── 📄 index.css
+│
+├── 📄 package.json
+├── 📄 vite.config.js
+└── 📄 README.md
+```
