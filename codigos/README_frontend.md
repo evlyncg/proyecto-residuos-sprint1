@@ -33,7 +33,7 @@ Consume la API del backend Django REST.
 ```
 
 > [!NOTE]
-> La ruta de la API se configura en `src/services/api.js` o con la variable `VITE_API_BASE_URL` (ver más abajo).
+> La ruta de la API se configura en `src/services/api.js` o con la variable `VITE_API_BASE_URL` .
 
 ---
 
@@ -49,7 +49,7 @@ Consume la API del backend Django REST.
    npm install
    ```
 
-3. **Variables de entorno (opcional pero recomendado)**
+3. **Variables de entorno**
    - Crea un archivo `.env` en `frontend/` con:
    ```env
    VITE_API_BASE_URL=http://127.0.0.1:8000/api/
@@ -83,7 +83,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api/",
 });
 
-// Ejemplos de uso
+// uso
 export const getResiduos = () => api.get("/residuos/");
 export const createResiduo = (data) => api.post("/residuos/", data);
 export const getPuntos = () => api.get("/puntos/");
