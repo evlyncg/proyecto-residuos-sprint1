@@ -74,7 +74,7 @@ Consume la API del backend Django REST.
 
 ## 🔌 Conexión con el backend (Axios)
 
-**`src/services/api.js`** (ejemplo listo para usar):
+**`src/services/api.js`** 
 
 ```javascript
 import axios from "axios";
