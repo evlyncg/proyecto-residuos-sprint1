@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestión de Residuos — Prueba de API (Sprint 7)</title>
+  <meta name="description" content="Probar GET y POST de la API desde una página estática.">
+  <link rel="icon" href="./assets/logo.svg">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;margin:0;background:#0f172a;color:#e5e7eb}
+    header,footer{padding:16px 14px;border-bottom:1px solid #1f2937} footer{border-top:1px solid #1f2937;border-bottom:none;text-align:center;color:#9ca3af}
+    main{max-width:980px;margin:10px auto;padding:0 14px}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    input,button,select{padding:10px 12px;border-radius:10px;border:1px solid #374151;background:#111827;color:#e5e7eb}
+    button{cursor:pointer} .primary{background:#22c55e;border-color:#16a34a;color:#052915}
+    pre{background:#0b1222;border:1px solid #1f2937;border-radius:12px;padding:12px;max-height:420px;overflow:auto}
+    a{color:#7dd3fc}
+    fieldset{border:1px solid #1f2937;border-radius:12px;padding:10px}
+    legend{padding:0 6px;color:#9ca3af}
+  </style>
+</head>
+<body>
+  <header><strong>Gestión de Residuos — Prueba de API (Sprint 7)</strong></header>
+  <main>
+    <p>Configura la URL base de tu API y prueba los endpoints:</p>
+    <div class="row" style="margin-bottom:8px">
+      <input id="base" placeholder="https://tu-backend.com/api/" style="min-width:280px">
+      <button class="primary" id="save">Guardar</button>
+      <button id="same">Usar mismo origen</button>
+    </div>
+    <div class="row" style="margin-bottom:8px">
+      <button id="res">GET /residuos/</button>
+      <button id="pto">GET /puntos/</button>
+      <button id="mov">GET /movimientos/</button>
+      <button id="usr">GET /usuarios/</button>
+      <button id="clear">Limpiar</button>
+    </div>
+
+    <fieldset style="margin:12px 0">
+      <legend>POST /movimientos/</legend>
+      <div class="row">
+        <input id="rId" type="number" placeholder="residuo_id" min="1">
+        <input id="pId" type="number" placeholder="punto_id" min="1">
+        <input id="kg" type="number" step="0.1" placeholder="cantidad_kg" min="0.1">
+        <input id="fec" type="date" placeholder="fecha">
+        <button class="primary" id="postMov">Enviar</button>
+      </div>
+      <small class="hint">El backend debe aceptar JSON y CORS. Para Django REST: @api_view(['POST']) con serializer.</small>
+    </fieldset>
+
+    <strong>Resultado</strong>
+    <pre id="out">—</pre>
+  </main>
+  <footer>Página estática para demostración • Sprint 7</footer>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const out = $("#out"), base = $("#base");
+
+  const saved = localStorage.getItem("apiBaseDemo7"); if(saved) base.value = saved;
+  $("#save").onclick = () => { localStorage.setItem("apiBaseDemo7", base.value.trim()); alert("URL guardada"); };
+  $("#same").onclick = () => { const u = location.origin + "/api/"; base.value = u; localStorage.setItem("apiBaseDemo7", u); alert("Usando " + u); };
+
+  async function call(path, opts){
+    const b = (base.value||"").trim().replace(/\/$/,"");
+    if(!b) return alert("Define la URL base primero.");
+    out.textContent = (opts && opts.method? opts.method : "GET") + " " + b + path + " …";
+    try{
+      const res = await fetch(b + path, opts || { headers: { "Accept":"application/json" } });
+      const text = await res.text();
+      let json; try{ json = JSON.parse(text); }catch{ json = { raw: text, status: res.status }; }
+      out.textContent = JSON.stringify(json, null, 2);
+    }catch(e){
+      out.textContent = "Error: " + e;
+    }
+  }
+
+  $("#res").onclick = () => call("/residuos/");
+  $("#pto").onclick = () => call("/puntos/");
+  $("#mov").onclick = () => call("/movimientos/");
+  $("#usr").onclick = () => call("/usuarios/");
+  $("#clear").onclick = () => out.textContent = "—";
+
+  $("#postMov").onclick = () => {
+    const payload = {
+      residuo_id: Number($("#rId").value),
+      punto_id: Number($("#pId").value),
+      cantidad_kg: Number($("#kg").value),
+      fecha: $("#fec").value || new Date().toISOString().slice(0,10)
+    };
+    call("/movimientos/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    });
+  };
+})();
+</script>
+</body>
+</html>
+
