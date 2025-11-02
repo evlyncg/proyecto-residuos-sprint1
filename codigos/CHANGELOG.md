@@ -39,3 +39,26 @@
 - Agregar dashboard de análisis de residuos recolectados.  
 - Mejorar diseño visual con componentes personalizados.  
 - Automatizar la carga de fixtures mediante un comando `python manage.py seed`.
+
+- ---
+
+## 🟠 Sprint 7 — pruebas de aceptación, la optimización visual y técnica
+Modo oscuro/claro (toggle 🌙/☀️). 
+
+i18n ES/EN (selector de idioma). 
+
+Dashboard con 3 gráficos en Canvas puro: 
+
+Línea: movimientos por día (filtrable por residuo). 
+
+Barras: distribución por tipo (kg). 
+
+Pastel: estatus de residuos. 
+
+CRUD simulado de movimientos (solo admin/operador) + bitácora de auditoría. 
+
+Exportación de la tabla de residuos a CSV y JSON. 
+
+Tablas de Residuos (búsqueda + filtro por tipo) y Puntos. 
+
+Login simulado por roles: admin@demo.com, op1@demo.com, visor@demo.com (cualquier contraseña). 
